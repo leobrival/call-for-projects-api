@@ -1,6 +1,5 @@
 import { test } from '@japa/runner'
 import fetch from 'node-fetch'
-import supertest from 'supertest'
 import {
   createOrganization,
   createProject,
@@ -14,21 +13,6 @@ const BASE_URL = 'http://localhost:3333/v1'
 const TEST_DOC = 'Le soleil est une étoile.'
 const TEST_QUESTION = "Qu'est-ce que le soleil ?"
 
-// Helper pour créer un projet
-async function createProject(
-  token: string,
-  name = 'Test Project',
-  description = 'Projet pour test vectoriel',
-  organizationId = 'org-id'
-) {
-  const res = await supertest(BASE_URL)
-    .post('/projects')
-    .set('Authorization', `Bearer ${token}`)
-    .send({ name, description, organizationId })
-    .expect(201)
-  return res.body.id
-}
-
 let userId: string
 let orgId: string
 let projectId: string
@@ -36,11 +20,8 @@ let token: string
 
 test.group('RAG API', (group) => {
   group.each.setup(async () => {
-    const user = await createUserAndLogin(
-      'vectoruser@example.com',
-      'ValidPassword1!',
-      'Vector User'
-    )
+    const uniqueEmail = `vectoruser_${Date.now()}@example.com`
+    const user = await createUserAndLogin(uniqueEmail, 'ValidPassword1!', 'Vector User')
     userId = user.userId
     token = user.token
     orgId = await createOrganization(token)

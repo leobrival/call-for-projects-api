@@ -7,7 +7,7 @@ export default class Project extends BaseModel {
   @column({ isPrimary: true })
   declare id: string
 
-  @column()
+  @column({ columnName: 'organization_id' })
   declare organizationId: string
 
   @belongsTo(() => Organization)
@@ -25,7 +25,7 @@ export default class Project extends BaseModel {
   @column()
   declare description: string | null
 
-  @column()
+  @column({ columnName: 'created_by' })
   declare createdBy: string
 
   public static boot() {

@@ -1,17 +1,12 @@
-import { OpenAI } from 'openai'
+import { openai } from '@ai-sdk/openai'
+import { embed } from 'ai'
 
 export default class OpenAIEmbeddingService {
-  private openai: OpenAI
-
-  constructor() {
-    this.openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
-  }
-
   async getEmbedding(content: string): Promise<number[]> {
-    const resp = await this.openai.embeddings.create({
-      model: 'text-embedding-3-small',
-      input: content,
+    const { embedding } = await embed({
+      model: openai.embedding('text-embedding-3-small'),
+      value: content,
     })
-    return resp.data[0].embedding
+    return embedding
   }
 }

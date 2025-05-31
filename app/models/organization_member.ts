@@ -6,19 +6,19 @@ export default class OrganizationMember extends BaseModel {
   @column({ isPrimary: true })
   declare id: string
 
-  @column()
+  @column({ columnName: 'organization_id' })
   declare organizationId: string
 
-  @column()
+  @column({ columnName: 'user_id' })
   declare userId: string
 
   @column()
   declare role: string
 
-  @column()
+  @column({ columnName: 'invitation_status' })
   declare invitationStatus: string
 
-  @column()
+  @column({ columnName: 'invitation_token' })
   declare invitationToken: string | null
 
   @column.dateTime({ autoCreate: true })

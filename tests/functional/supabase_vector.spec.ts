@@ -22,11 +22,8 @@ let token: string
 
 test.group('SupabaseVectorService', (group) => {
   group.each.setup(async () => {
-    const user = await createUserAndLogin(
-      'vectoruser2@example.com',
-      'ValidPassword1!',
-      'Vector User2'
-    )
+    const uniqueEmail = `vectoruser2_${Date.now()}@example.com`
+    const user = await createUserAndLogin(uniqueEmail, 'ValidPassword1!', 'Vector User2')
     userId = user.userId
     token = user.token
     orgId = await createOrganization(token)
@@ -70,14 +67,14 @@ test.group('SupabaseVectorService', (group) => {
       // 2. Insert dans Supabase via le service
       const svc = new SupabaseVectorService()
       const doc = {
-        project_id: 'test-project',
+        project_id: projectId,
         content: text,
         embedding,
         metadata: { test: true },
       }
       const inserted = await svc.insertVector(doc)
       assert.exists(inserted)
-      assert.equal(inserted.project_id, 'test-project')
+      assert.equal(inserted.project_id, projectId)
       assert.equal(inserted.content, text)
     } catch (e) {
       console.error('Test error:', e)

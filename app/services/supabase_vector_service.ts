@@ -27,7 +27,7 @@ export default class SupabaseVectorService {
   }
 
   // Search for vectors by embedding (KNN search)
-  async searchVectors(project_id: string, embedding: number[], matchCount = 5) {
+  async searchVectors(project_id: string, _embedding: number[], matchCount = 5) {
     // KNN search natif (si pgvector >= 0.5.0 sur Supabase)
     const { data, error } = await this.client
       .from(this.table)

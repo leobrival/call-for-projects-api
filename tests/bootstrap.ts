@@ -1,8 +1,8 @@
-import { assert } from '@japa/assert'
 import app from '@adonisjs/core/services/app'
-import type { Config } from '@japa/runner/types'
-import { pluginAdonisJS } from '@japa/plugin-adonisjs'
 import testUtils from '@adonisjs/core/services/test_utils'
+import { assert } from '@japa/assert'
+import { pluginAdonisJS } from '@japa/plugin-adonisjs'
+import type { Config } from '@japa/runner/types'
 
 /**
  * This file is imported by the "bin/test.ts" entrypoint file
@@ -33,5 +33,13 @@ export const runnerHooks: Required<Pick<Config, 'setup' | 'teardown'>> = {
 export const configureSuite: Config['configureSuite'] = (suite) => {
   if (['browser', 'functional', 'e2e'].includes(suite.name)) {
     return suite.setup(() => testUtils.httpServer().start())
+  }
+
+  if (suite.name === 'unit') {
+    return suite.setup(async () => {
+      // Pour les tests unitaires, on initialise juste l'app sans le serveur HTTP
+      await app.init()
+      await app.boot()
+    })
   }
 }

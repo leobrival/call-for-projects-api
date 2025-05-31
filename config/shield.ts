@@ -16,18 +16,8 @@ const shieldConfig = defineConfig({
    * to learn more
    */
   csrf: {
-    enabled: true,
-    exceptRoutes: [
-      '/organizations',
-      '/projects',
-      '/projects/:id',
-      '/projects/:projectId/vectors/upload',
-      '/projects/:projectId/vectors/test',
-      '/projects/:projectId/ask',
-      '/projects/:projectId/vectors/upload',
-      '/projects/:projectId/vectors/test',
-      '/projects/:projectId/ask',
-    ],
+    enabled: false,
+    exceptRoutes: [],
     enableXsrfCookie: false,
     methods: ['POST', 'PUT', 'PATCH', 'DELETE'],
   },

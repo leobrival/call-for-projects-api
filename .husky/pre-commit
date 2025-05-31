@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Set shell options for safety
+set -e
+
+# Run lint-staged for formatting and linting
+pnpm lint-staged
+
+# Run tests to ensure everything works
+pnpm test

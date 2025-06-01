@@ -13,6 +13,9 @@
     "format": "prettier --write .",
     "typecheck": "tsc --noEmit",
     "db:up": "docker compose up -d",
+    "docker:start": "node -e \"process.platform === 'win32' ? require('child_process').spawn('cmd', ['/c', 'scripts/start-docker.cmd'], {stdio: 'inherit'}) : require('child_process').spawn('./scripts/start-docker.sh', [], {stdio: 'inherit'})\"",
+    "docker:start:unix": "./scripts/start-docker.sh",
+    "docker:start:windows": "scripts/start-docker.cmd",
     "prepare": "husky"
   },
   "imports": {

@@ -8,7 +8,7 @@ import { test } from '@japa/runner'
 
 test.group('Project', (group) => {
   group.each.teardown(async () => {
-    // Nettoyer dans l'ordre des dépendances
+    // Clean in dependency order
     await Project.query().delete()
     await Organization.query().delete()
     await User.query().delete()
@@ -24,7 +24,7 @@ test.group('Project', (group) => {
     assert.isDefined(project.createdAt)
     assert.isDefined(project.updatedAt)
 
-    // Vérifier que les relations existent
+    // Verify that relationships exist
     const orgExists = await Organization.find(project.organizationId)
     const userExists = await User.find(project.createdBy)
 

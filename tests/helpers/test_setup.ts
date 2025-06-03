@@ -1,27 +1,16 @@
 import supertest from 'supertest'
-import User from '#models/user'
 
 const BASE_URL = 'http://localhost:3333/v1'
 
-// Define token options matching those in AuthController
-const TOKEN_OPTIONS = {
-  name: 'api_auth_token',
-  abilities: ['*'],
-  expiresIn: '30 days',
-  tokenType: 'auth_token',
-}
-
 export async function createUserAndLogin(email?: string, password?: string, fullName?: string) {
-  // Créer un email unique si non fourni
+  // Create a unique email if not provided
   const userEmail =
     email || `user_${Date.now()}_${Math.random().toString(36).substr(2, 9)}@example.com`
   const userPassword = password || 'ValidPassword1!'
   const userName = fullName || 'Test User'
 
-  console.log(`DEBUG test_setup: creating user with email ${userEmail}`)
-
   try {
-    // Créer le user via l'API
+    // Create the user via API
     const signupRes = await supertest(BASE_URL)
       .post('/signup')
       .set('Accept', 'application/json')
@@ -30,10 +19,8 @@ export async function createUserAndLogin(email?: string, password?: string, full
       .expect(201)
 
     const userId = signupRes.body.id
-    console.log(`DEBUG test_setup: user created with ID ${userId}`)
 
-    // Se connecter pour obtenir le token
-    console.log(`DEBUG test_setup: logging in with email ${userEmail}`)
+    // Sign in to get the token
     const loginRes = await supertest(BASE_URL)
       .post('/signin')
       .set('Accept', 'application/json')
@@ -44,52 +31,30 @@ export async function createUserAndLogin(email?: string, password?: string, full
     const token = loginRes.body.token
 
     if (!token) {
-      console.error('DEBUG test_setup: No token received from login response')
       throw new Error('No token received from login')
-    }
-
-    console.log(`DEBUG test_setup: received token (length: ${token.length})`)
-    console.log('DEBUG test_setup: token type:', loginRes.body.type)
-    console.log('DEBUG test_setup: token abilities:', loginRes.body.abilities)
-
-    // Alternative method: Create token directly if API method fails
-    if (!token || token.length < 20) {
-      console.log('DEBUG test_setup: token from API too short, creating token directly')
-
-      // Find the user we just created
-      const user = await User.findBy('email', userEmail)
-
-      if (!user) {
-        throw new Error(`User not found: ${userEmail}`)
-      }
-
-      // Create a token with the same options as in AuthController
-      const directToken = await User.accessTokens.create(user, TOKEN_OPTIONS)
-
-      if (!directToken || !directToken.value) {
-        throw new Error('Failed to create token directly')
-      }
-
-      console.log(`DEBUG test_setup: created direct token (length: ${directToken.value.length})`)
-
-      // Use this token instead
-      return { token: directToken.value, userId }
     }
 
     return { token, userId }
   } catch (error) {
-    console.error('DEBUG test_setup: error in createUserAndLogin:', error.message)
+    console.error('Error in createUserAndLogin:', error.message)
     throw error
   }
 }
 
-export async function createOrganization(token: string, name = 'Test Org') {
+export async function createOrganization(token: string, name?: string) {
+  // Generate a unique name if not provided
+  const uniqueName = name || `Test Org ${Date.now()}_${Math.random().toString(36).substr(2, 5)}`
+  const slug = uniqueName
+    .toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/[^a-z0-9-]/g, '')
+
   const res = await supertest(BASE_URL)
     .post('/organizations')
     .set('Authorization', `Bearer ${token}`)
     .set('Accept', 'application/json')
     .set('Content-Type', 'application/json')
-    .send({ name, slug: name.toLowerCase().replace(/\s+/g, '-') })
+    .send({ name: uniqueName, slug })
     .expect(201)
   return res.body.id
 }

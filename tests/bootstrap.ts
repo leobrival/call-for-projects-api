@@ -37,7 +37,7 @@ export const configureSuite: Config['configureSuite'] = (suite) => {
 
   if (suite.name === 'unit') {
     return suite.setup(async () => {
-      // Pour les tests unitaires, on initialise juste l'app sans le serveur HTTP
+      // For unit tests, we only initialize the app without the HTTP server
       await app.init()
       await app.boot()
     })

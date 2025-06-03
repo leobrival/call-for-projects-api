@@ -8,7 +8,7 @@ import { test } from '@japa/runner'
 
 test.group('OrganizationMember', (group) => {
   group.each.teardown(async () => {
-    // Nettoyer dans l'ordre des dépendances
+    // Clean in dependency order
     await OrganizationMember.query().delete()
     await Organization.query().delete()
     await User.query().delete()
@@ -25,7 +25,7 @@ test.group('OrganizationMember', (group) => {
     assert.isDefined(member.createdAt)
     assert.isDefined(member.updatedAt)
 
-    // Vérifier que les relations existent
+    // Verify that relationships exist
     const orgExists = await Organization.find(member.organizationId)
     const userExists = await User.find(member.userId)
 
@@ -53,14 +53,14 @@ test.group('OrganizationMember', (group) => {
   test('OrganizationMember role validation', async ({ assert }) => {
     const member = await OrganizationMemberFactory.create()
 
-    // Vérifier que le rôle est valide
+    // Verify that the role is valid
     assert.isTrue(['admin', 'member'].includes(member.role))
   })
 
   test('OrganizationMember invitation status validation', async ({ assert }) => {
     const member = await OrganizationMemberFactory.create()
 
-    // Vérifier que le statut d'invitation est valide
+    // Verify that the invitation status is valid
     assert.isTrue(['pending', 'accepted', 'declined'].includes(member.invitationStatus))
   })
 

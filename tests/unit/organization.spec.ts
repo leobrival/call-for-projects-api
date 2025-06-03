@@ -8,7 +8,7 @@ import { test } from '@japa/runner'
 
 test.group('Organization', (group) => {
   group.each.teardown(async () => {
-    // Nettoyer dans l'ordre des dépendances
+    // Clean in dependency order
     await OrganizationMember.query().delete()
     await Organization.query().delete()
     await User.query().delete()
@@ -35,7 +35,7 @@ test.group('Organization', (group) => {
     const user = await UserFactory.create()
     const org = await OrganizationFactory.create()
 
-    // Test relation many-to-many avec users en créant un OrganizationMember
+    // Test many-to-many relationship with users by creating an OrganizationMember
     await OrganizationMemberFactory.merge({
       organizationId: org.id,
       userId: user.id,

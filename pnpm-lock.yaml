@@ -109,8 +109,8 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0(eslint@9.27.0(jiti@2.4.2))(prettier@3.5.3)(typescript@5.8.3)
       '@adonisjs/prettier-config':
-        specifier: ^1.4.4
-        version: 1.4.4
+        specifier: ^1.4.5
+        version: 1.4.5
       '@adonisjs/tsconfig':
         specifier: ^1.4.0
         version: 1.4.0
@@ -200,6 +200,9 @@ importers:
         version: 6.3.5(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0)
 
 packages:
+
+  '@adobe/css-tools@4.4.3':
+    resolution: {integrity: sha512-VQKMkwriZbaOgVCby1UDY/LDk5fIjhQicCvVPFqfe+69fWaPWydbWJ3wRt59/YzIwda1I81loas3oCoHxnqvdA==}
 
   '@adonisjs/ace@13.3.0':
     resolution: {integrity: sha512-68dveDFd766p69cBvK/MtOrOP0+YKYLeHspa9KLEWcWk9suPf3pbGkHQ2pwDnvLJxBPHk4932KbbSSzzpGNZGw==}
@@ -371,8 +374,8 @@ packages:
       '@adonisjs/assembler':
         optional: true
 
-  '@adonisjs/prettier-config@1.4.4':
-    resolution: {integrity: sha512-rL7JVPyMcQyQKVIt4U4DC0zO9sjcPnepLTx859b47HtHTrQTuDi8/uSqEL//vhAmqlvNuQg0FBgnPJ1eEDbiAA==}
+  '@adonisjs/prettier-config@1.4.5':
+    resolution: {integrity: sha512-UOYmJQeOhWRIWE2v/cXmpMPq2Its5lOpNeJ+nr79yASAVFVtlDE5qdHicMgVdTbFPWFgHzmU8icVk6YmaOnSXg==}
 
   '@adonisjs/repl@4.1.0':
     resolution: {integrity: sha512-7Ml87uoufDQmpjRZYbJeRTk0/WcD4DllJ96L1r2IWF/jZIsryiVN5o+7Xd7fHlRzd8iapAbs32Tq4a6fVI6UKA==}
@@ -1611,11 +1614,6 @@ packages:
   asynckit@0.4.0:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
 
-  atob@2.1.2:
-    resolution: {integrity: sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==}
-    engines: {node: '>= 4.5.0'}
-    hasBin: true
-
   atomic-sleep@1.0.0:
     resolution: {integrity: sha512-kNOjDqAh7px0XWNI+4QbzoiR/nTkHAWNud2uvnJquD1/x5a7EQZMJT0AczqK0Qn67oY/TTQ1LbUKajZpp3I9tQ==}
     engines: {node: '>=8.0.0'}
@@ -1840,9 +1838,6 @@ packages:
     resolution: {integrity: sha512-uTqEnCvWRk042asU6JtapDTcJeeailFy4ydOQS28bj1hcLnYRiqi8SsD2jS412AY1I/4qdOwWZun774iqywf9w==}
     engines: {node: '>= 0.8'}
 
-  css@3.0.0:
-    resolution: {integrity: sha512-DG9pFfwOrzc+hawpmqX/dHYHJG+Bsdb0klhyi1sDneOgGOXy9wQIC8hzyVp1e4NRYDBdxcylvywPkkXCHAzTyQ==}
-
   csstype@3.1.3:
     resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
 
@@ -1884,10 +1879,6 @@ packages:
     peerDependenciesMeta:
       supports-color:
         optional: true
-
-  decode-uri-component@0.2.2:
-    resolution: {integrity: sha512-FqUYQ+8o158GyGTrMFJms9qh3CqTKvAqgqsTnkLI8sKu0028orqBhxNMFkFen0zGyg6epACD32pjVk58ngIErQ==}
-    engines: {node: '>=0.10'}
 
   dedent@1.6.0:
     resolution: {integrity: sha512-F1Z+5UCFpmQUzJa11agbyPVMbpgT/qA3/SKyJ1jyBgm7dUcUEa8v9JwDkerSQXfakBwFljIxhOJqGkjUwZ9FSA==}
@@ -1969,8 +1960,8 @@ packages:
     resolution: {integrity: sha512-me875zh6YA0V429hywgQIpHgMvQkondv5XHaP6EsL2yIBpLcBWCl7Ba1cai0SwYhp8iD0IyV3KjpxLrnW7S2Ag==}
     engines: {node: '>=18.16.0'}
 
-  edgejs-parser@0.2.14:
-    resolution: {integrity: sha512-Qlx1U4bm+3mXwijEGIZBf5RdJpxQUB8AQ8yoSRAatQoHzTX+IW8L3RwKMV99Zw+9LDZI+rMGjBq9xLHUQNMAPw==}
+  edgejs-parser@0.2.15:
+    resolution: {integrity: sha512-oecDEAJ0VgkQL3+s5/6Ky/hm0O4Ogv90r+/ORKu8SVdWi9fvC3r1l2zoD6004R4QPpH6u7GTaoxwa5bEapmTmw==}
 
   ee-first@1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
@@ -3122,8 +3113,8 @@ packages:
     resolution: {integrity: sha512-GbK2cP9nraSSUF9N2XwUwqfzlAFlMNYYl+ShE/V+H8a9uNl/oUqB1w2EL54Jh0OlyRSd8RfWYJ3coVS4TROP2w==}
     engines: {node: '>=6.0.0'}
 
-  prettier-plugin-edgejs@1.0.0:
-    resolution: {integrity: sha512-MUlHVU3OM8AGznwRlYm0Ah0ckX2NCx0A+VoA2Dgl4bce4aGkaPT9JDZN88no6xLrUNbKsukkjk4KMfREPXf47A==}
+  prettier-plugin-edgejs@1.0.2:
+    resolution: {integrity: sha512-bas2NOpUpmHdyIYbc45qfpX7fte1IdoT24lfFQE/2MvUKFla5Y2RAzKawiMIwS29U3Khv968QcaqErcMOLi+qA==}
 
   prettier@3.5.3:
     resolution: {integrity: sha512-QQtaxnoDJeAkDvDKWCLiwIXkTgRhwYDEQCghU9Z6q03iyek/rxRh/2lC3HB7P8sWT2xC/y5JDctPLBIGzHKbhw==}
@@ -3393,10 +3384,6 @@ packages:
   source-map-js@1.2.1:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
     engines: {node: '>=0.10.0'}
-
-  source-map-resolve@0.6.0:
-    resolution: {integrity: sha512-KXBr9d/fO/bWo97NXsPIAW1bFSBOuCnjbNTBMO7N59hsv5i9yzRDfcYwwt0l04+VqnKC+EwzvJZIP/qkuMgR/w==}
-    deprecated: See https://github.com/lydell/source-map-resolve#deprecated
 
   source-map@0.6.1:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
@@ -3842,6 +3829,8 @@ packages:
 
 snapshots:
 
+  '@adobe/css-tools@4.4.3': {}
+
   '@adonisjs/ace@13.3.0':
     dependencies:
       '@poppinss/cliui': 6.4.3
@@ -4101,9 +4090,9 @@ snapshots:
     optionalDependencies:
       '@adonisjs/assembler': 7.8.2(typescript@5.8.3)
 
-  '@adonisjs/prettier-config@1.4.4':
+  '@adonisjs/prettier-config@1.4.5':
     dependencies:
-      prettier-plugin-edgejs: 1.0.0
+      prettier-plugin-edgejs: 1.0.2
 
   '@adonisjs/repl@4.1.0':
     dependencies:
@@ -5264,8 +5253,6 @@ snapshots:
 
   asynckit@0.4.0: {}
 
-  atob@2.1.2: {}
-
   atomic-sleep@1.0.0: {}
 
   autoprefixer@10.4.21(postcss@8.5.4):
@@ -5481,12 +5468,6 @@ snapshots:
       tsscmp: 1.0.6
       uid-safe: 2.1.5
 
-  css@3.0.0:
-    dependencies:
-      inherits: 2.0.4
-      source-map: 0.6.1
-      source-map-resolve: 0.6.0
-
   csstype@3.1.3: {}
 
   data-uri-to-buffer@2.0.2: {}
@@ -5508,8 +5489,6 @@ snapshots:
   debug@4.4.1:
     dependencies:
       ms: 2.1.3
-
-  decode-uri-component@0.2.2: {}
 
   dedent@1.6.0: {}
 
@@ -5579,7 +5558,7 @@ snapshots:
       property-information: 6.5.0
       stringify-attributes: 4.0.0
 
-  edgejs-parser@0.2.14:
+  edgejs-parser@0.2.15:
     dependencies:
       chevrotain: 11.0.3
 
@@ -6639,10 +6618,10 @@ snapshots:
     dependencies:
       fast-diff: 1.3.0
 
-  prettier-plugin-edgejs@1.0.0:
+  prettier-plugin-edgejs@1.0.2:
     dependencies:
-      css: 3.0.0
-      edgejs-parser: 0.2.14
+      '@adobe/css-tools': 4.4.3
+      edgejs-parser: 0.2.15
       prettier: 3.5.3
       uglify-js: 3.19.3
 
@@ -6922,11 +6901,6 @@ snapshots:
       atomic-sleep: 1.0.0
 
   source-map-js@1.2.1: {}
-
-  source-map-resolve@0.6.0:
-    dependencies:
-      atob: 2.1.2
-      decode-uri-component: 0.2.2
 
   source-map@0.6.1: {}
 

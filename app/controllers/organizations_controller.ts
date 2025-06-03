@@ -1,4 +1,5 @@
 import Organization from '#models/organization'
+import AuthService from '#services/auth_service'
 import type { HttpContext } from '@adonisjs/core/http'
 import slugifyImport from 'slugify'
 
@@ -11,6 +12,20 @@ export default class OrganizationsController {
   async index({ response }: HttpContext) {
     const orgs = await Organization.all()
     return response.ok(orgs)
+  }
+
+  /**
+   * Display the organizations page with Inertia.js
+   */
+  async indexPage({ inertia, auth }: HttpContext) {
+    const organizations = await Organization.all()
+
+    return inertia.render('Organizations', {
+      organizations,
+      auth: {
+        user: AuthService.getUserForProtectedPage(auth),
+      },
+    })
   }
 
   /**

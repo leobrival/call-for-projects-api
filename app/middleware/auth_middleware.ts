@@ -15,23 +15,6 @@ export default class AuthMiddleware {
   redirectTo = '/login'
 
   /**
-   * Log authorization header (redacting the actual token)
-   */
-  private logAuthHeader(ctx: HttpContext): void {
-    const authHeader = ctx.request.header('authorization')
-    if (authHeader) {
-      if (authHeader.startsWith('Bearer ')) {
-        const tokenLength = authHeader.length - 7
-        console.log(`DEBUG auth middleware: found Bearer token (length: ${tokenLength})`)
-      } else {
-        console.log('DEBUG auth middleware: found non-Bearer authorization header')
-      }
-    } else {
-      console.log('DEBUG auth middleware: no authorization header present')
-    }
-  }
-
-  /**
    * Handle the request by authenticating the user
    * Uses only standard AdonisJS authentication methods
    */
@@ -45,27 +28,15 @@ export default class AuthMiddleware {
     // Get guards from options or use default
     const guards = options.guards || ['api']
 
-    // Log debugging information
-    console.log('DEBUG auth middleware: using guards =', guards)
-    this.logAuthHeader(ctx)
-
     try {
-      // For tests, it's important to use silent=true to prevent redirects
-      // This is how we make sure we get proper 401 responses in API contexts
+      // Authenticate using the specified guards
       await ctx.auth.authenticateUsing(guards, {
         loginRoute: this.redirectTo,
-        silent: true,
       })
-
-      // If we get here, authentication succeeded
-      console.log('DEBUG auth middleware: authentication successful, user =', ctx.auth.user?.id)
 
       // Proceed with the request
       return next()
     } catch (error) {
-      // Authentication failed
-      console.log('DEBUG auth middleware: authentication failed -', error.message)
-
       // Return consistent error response
       return this.handleUnauthenticated(ctx)
     }
@@ -80,7 +51,6 @@ export default class AuthMiddleware {
     }
 
     // Always return 401 with consistent error format
-    console.log('DEBUG auth middleware: returning 401 Unauthorized response')
     return ctx.response.status(401).json(response)
   }
 }

@@ -1,0 +1,6 @@
+{
+  "extends": "@adonisjs/prettier-config",
+  "singleQuote": true,
+  "quoteProps": "consistent",
+  "jsxSingleQuote": true
+}

@@ -1,5 +1,6 @@
 import Organization from '#models/organization'
 import Project from '#models/project'
+import AuthService from '#services/auth_service'
 import OpenAIEmbeddingService from '#services/openai_embedding_service'
 import SupabaseVectorService from '#services/supabase_vector_service'
 import type { HttpContext } from '@adonisjs/core/http'
@@ -11,6 +12,20 @@ export default class ProjectsController {
   async index({ response }: HttpContext) {
     const projects = await Project.all()
     return response.ok(projects)
+  }
+
+  /**
+   * Display the projects page with Inertia.js
+   */
+  async indexPage({ inertia, auth }: HttpContext) {
+    const projects = await Project.query().preload('organization')
+
+    return inertia.render('Projects', {
+      projects,
+      auth: {
+        user: AuthService.getUserForProtectedPage(auth),
+      },
+    })
   }
 
   /**
